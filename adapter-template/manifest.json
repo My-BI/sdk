@@ -1,0 +1,9 @@
+{
+  "id": "example",
+  "version": "1.0.0",
+  "name": "Example",
+  "framework": "react",
+  "apiVersion": 1,
+  "engine": "example",
+  "supportedKinds": ["column", "bar", "line", "area"]
+}

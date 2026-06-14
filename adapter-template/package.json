@@ -1,0 +1,21 @@
+{
+  "name": "mybi-adapter-example",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "package": "node build.mjs"
+  },
+  "dependencies": {
+    "@mybi/chart-adapter-sdk": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^18",
+    "@vitejs/plugin-react": "^4",
+    "react": "^18",
+    "react-dom": "^18",
+    "typescript": "^5",
+    "vite": "^6"
+  }
+}
