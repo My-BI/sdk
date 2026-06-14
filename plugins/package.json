@@ -1,0 +1,11 @@
+{
+  "name": "@mybi/plugin-sdk",
+  "version": "1.0.0",
+  "description": "Types for building MyBI plugins (manifest, contributions, the host bridge).",
+  "type": "module",
+  "types": "src/index.ts",
+  "exports": { ".": { "types": "./src/index.ts" } },
+  "files": ["src"],
+  "license": "MIT",
+  "peerDependencies": { "react": ">=18" }
+}

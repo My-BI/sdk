@@ -1,55 +1,19 @@
-# @mybi/chart-adapter-sdk
+# MyBI SDK
 
-Build your own **signed chart adapter** for MyBI. An adapter is a tiny UMD bundle that draws
-a MyBI `ChartSpec` with the charting library of your choice — it ships as a `.mybiadapter`
-(a zip of `manifest.json` + `bundle.js` + `signature.json`), is verified (Ed25519) before it
-runs, and is downloaded on demand by MyBI.
+Build signed extensions for MyBI. One repo, two SDKs:
 
-## How it works
+- **[`adapter/`](./adapter)** — `@mybi/chart-adapter-sdk`: build a **chart adapter** that draws
+  a MyBI `ChartSpec` with your charting library. Downloaded + verified at runtime; reads the
+  host off `window.MyBIChartHost`.
+- **[`plugins/`](./plugins)** — `@mybi/plugin-sdk`: build a **plugin** (surfaces, rails,
+  settings) that runs in a sandboxed iframe and talks to MyBI through the `host` bridge.
 
-```
-your adapter (bundle.js)            MyBI app
-─────────────────────────           ────────────────────────────────────────
-reads window.MyBIChartHost   ◄────  injects the host SDK + window.React before eval
-reads window.React + your lib       resolves the spec → calls your Renderer
-assigns globalThis.MyBIChartAdapter verifies the signature on download + every read
-```
+Both ship as **signed packages** (`.mybiadapter` / `.mybiplugin`) and are verified (Ed25519)
+before they run. You sign with your **own** key (it never leaves your machine); MyBI
+countersigns it for the **verified** tier. See each folder's `RECIPE.md` + `SIGNING.md`.
 
-Your adapter imports **nothing** from the MyBI app — only the **types** in this package. At
-runtime it reads the host off `window.MyBIChartHost` and React off `window.React` (both
-injected by MyBI before your bundle is eval'd). React and your charting library stay
-**external** (the host provides React; you don't bundle your own).
-
-## The contract
-
-```ts
-import type { MyBIChartHost, ChartAdapterModule, ChartSpec, QueryResult } from "@mybi/chart-adapter-sdk";
-```
-
-- `MyBIChartHost` — everything the host provides: `data.shape`, `palette`, `theme`,
-  `crossFilter`, `signals`, `analytics`, `format`, `maps`, `react`.
-- `ChartAdapterModule` — what your bundle assigns to `globalThis.MyBIChartAdapter`
-  (`id`, `name`, `framework`, `supportedKinds`, `capabilities(kind)`, `Renderer`, `apiVersion`).
-- `HOST_API_VERSION` — declare the version you target; MyBI refuses anything newer than it runs.
-
-## Get started
-
-1. Copy [`adapter-template/`](./adapter-template) — a working example you can run.
-2. Read [`RECIPE.md`](./RECIPE.md) — how to build the UMD (the externals are the only tricky part).
-3. Read [`SIGNING.md`](./SIGNING.md) — how to get your adapter signed (first-party `mybi`,
-   or `verified` via a MyBI countersign) and published.
-
-## Trust
-
-- **mybi** — signed by MyBI (first-party).
-- **verified** — you sign with your own key + MyBI countersigns it (you keep your private key).
-- **community** — registry-listed but unsigned; installs behind a consent prompt.
-
-A signature proves **authorship**, not capability — adapters run in-process. Verify your own
-build any time:
-
-```sh
-node scripts/verify-adapter.mjs my-adapter.mybiadapter
-```
+> MyBI's plugin model evolved over time — this SDK reflects the **current** model (the old
+> iframe-rendered detail UI is deprecated; detail pages are now host-rendered text +
+> settings toggles).
 
 MIT.

@@ -1,0 +1,8 @@
+{
+  "id": "hello",
+  "name": "Hello Plugin",
+  "version": "1.0.0",
+  "uses": ["ui", "dataset", "settings"],
+  "description": "A starter MyBI plugin.",
+  "license": "MIT"
+}
