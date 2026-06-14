@@ -1,6 +1,6 @@
 # Build recipe — MyBI plugin
 
-A plugin is a CommonJS `index.js` (+ `manifest.json`) zipped into a `.mybiplugin`. It runs in
+A plugin is a CommonJS `index.js` (+ `manifest.json`) zipped into a `.mbip`. It runs in
 an **isolated iframe sandbox**, so it **bundles its own React**; only `@mybi/host` is external
 (the host shim provides it). No network egress (use `host.net`, which is policy-gated).
 
@@ -29,7 +29,7 @@ await build({ entryPoints: ["src/index.tsx"], bundle: true, format: "cjs", jsx: 
   outfile: "dist/index.js", external: ["@mybi/host"] });   // React bundled in
 ```
 
-## 3. Package → `.mybiplugin` (zip `manifest.json` + `index.js`)
+## 3. Package → `.mbip` (zip `manifest.json` + `index.js`)
 
 ## 4. Sign + publish → [`SIGNING.md`](./SIGNING.md)
 

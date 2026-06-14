@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 // Self-contained adapter verifier for CI — PUBLIC key only, no secrets, no deps.
-// Verifies a `.mybiadapter` (mybi-adapter-v1) against the bundled MyBI PUBLIC key, so a
+// Verifies a `.mbia` (mybi-adapter-v1) against the bundled MyBI PUBLIC key, so a
 // GitHub Action (running as github-actions[bot]) can refuse to promote anything that isn't
 // validly MyBI-signed — WITHOUT ever holding the private seed. Mirrors the app's verifier
 // (src-tauri/src/plugin_sign.rs) + tools/plugin-signer/lib.mjs byte-for-byte.
 //
-//   node scripts/verify-adapter.mjs <file.mybiadapter>   → exit 0 if ✓ (mybi/verified), else 1
+//   node scripts/verify-adapter.mjs <file.mbia>   → exit 0 if ✓ (mybi/verified), else 1
 import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 
@@ -20,7 +20,7 @@ const SPKI_PREFIX = Buffer.from("302a300506032b6570032100", "hex");
 const sha256 = (b) => crypto.createHash("sha256").update(b).digest();
 
 const file = process.argv[2];
-if (!file) { console.error("usage: verify-adapter.mjs <file.mybiadapter>"); process.exit(2); }
+if (!file) { console.error("usage: verify-adapter.mjs <file.mbia>"); process.exit(2); }
 
 const entry = (n) => {
   try { return execFileSync("unzip", ["-p", file, n], { maxBuffer: 64 * 1024 * 1024 }); }

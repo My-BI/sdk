@@ -1,5 +1,5 @@
 // Starter MyBI plugin. Runs in an isolated iframe sandbox, so it bundles its OWN React;
-// only @mybi/host is external (the host shim provides it). Build → hello.mybiplugin.
+// only @mybi/host is external (the host shim provides it). Build → hello.mbip.
 import { useState } from "react";
 import { host, registerPlugin } from "@mybi/host";
 import type { PluginDefinition } from "@mybi/plugin-sdk";
@@ -33,7 +33,7 @@ const def: PluginDefinition = {
         { type: "paragraph", spans: [{ text: "A starter MyBI plugin — one surface that reads datasets and notifies." }] },
         { type: "bullets", items: [
           [{ text: "Edit " }, { text: "src/index.tsx", bold: true }],
-          [{ text: "npm run build → hello.mybiplugin" }],
+          [{ text: "npm run build → hello.mbip" }],
           [{ text: "Sign it — see ../SIGNING.md" }],
         ] },
       ],

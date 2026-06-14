@@ -1,6 +1,6 @@
 // @mybi/plugin-sdk — the contract a MyBI PLUGIN is built against (current model).
 // ============================================================================
-// A plugin is a CommonJS module bundled into a `.mybiplugin` zip (manifest.json + index.js
+// A plugin is a CommonJS module bundled into a `.mbip` zip (manifest.json + index.js
 // + optional signature.json). It runs in a token-validated, capability-scoped IFRAME sandbox
 // (no network egress). It calls `registerPlugin(def)` ONCE with a manifest + contributions
 // (React components for surfaces/rails/settings); the host then renders those on demand and

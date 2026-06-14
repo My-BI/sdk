@@ -5,7 +5,7 @@ toggle, and host-rendered detail text. Starting point for your own plugin.
 
 ```sh
 npm install
-npm run build     # → hello.mybiplugin  (own React bundled; @mybi/host external)
+npm run build     # → hello.mbip  (own React bundled; @mybi/host external)
 # then sign it — see ../SIGNING.md
 ```
 

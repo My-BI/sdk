@@ -1,6 +1,6 @@
 # Signing & publishing an adapter
 
-A `.mybiadapter` only runs in MyBI if its signature verifies. There are three tiers:
+A `.mbia` only runs in MyBI if its signature verifies. There are three tiers:
 
 | Tier | Who signs | Badge |
 |---|---|---|
@@ -21,16 +21,16 @@ Your **private key never leaves your machine** — not in the repo, not in CI. C
    (`countersign-<you>.json`) — proof MyBI vouches for your key. (MyBI never sees your seed.)
 3. **Sign your adapter** with your seed + the token:
    ```sh
-   PUBLISHER_SEED=<seed> mybi-plugin publisher-sign-adapter mychart.mybiadapter --token countersign-you.json
+   PUBLISHER_SEED=<seed> mybi-plugin publisher-sign-adapter mychart.mbia --token countersign-you.json
    ```
-   → `mychart-signed.mybiadapter`, tier `verified`.
+   → `mychart-signed.mbia`, tier `verified`.
 4. **Verify** (uses the public key — no secrets):
    ```sh
-   node scripts/verify-adapter.mjs mychart-signed.mybiadapter
+   node scripts/verify-adapter.mjs mychart-signed.mbia
    ```
 5. **Publish**: open a PR on `My-BI/plugin-registry` adding your engine to
    `charts/registry.json` (`adapterRepo`, `adapter: "ready"`), and attach the signed
-   `.mybiadapter` to a release on your `adapterRepo`. CI verifies + promotes it.
+   `.mbia` to a release on your `adapterRepo`. CI verifies + promotes it.
 
 The payload that's signed is `"mybi-adapter-v1\n" + id + "\n" + version + "\n" +
 sha256(manifest.json) + sha256(bundle.js)` — so the manifest, the bundle and the identity

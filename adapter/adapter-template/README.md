@@ -6,7 +6,7 @@ A minimal, working MyBI chart adapter — draws an SVG column chart from the hos
 ```sh
 npm install
 npm run build        # → dist/bundle.js  (React external)
-npm run package      # → example.mybiadapter  (unsigned)
+npm run package      # → example.mbia  (unsigned)
 # then sign it — see ../SIGNING.md
 ```
 

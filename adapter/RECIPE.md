@@ -1,4 +1,4 @@
-# Build recipe — turning your adapter into a `.mybiadapter`
+# Build recipe — turning your adapter into a `.mbia`
 
 An adapter bundle is a **UMD** that:
 1. reads `window.MyBIChartHost` + `window.React` (and your charting library global),
@@ -53,7 +53,7 @@ plugins: [react({ jsxRuntime: "classic" })], // classic JSX → React.createElem
 npm run build      # → dist/bundle.js
 ```
 
-## 3. Package the `.mybiadapter`
+## 3. Package the `.mbia`
 
 `manifest.json` (bound by the signature — id + version are required):
 
@@ -62,7 +62,7 @@ npm run build      # → dist/bundle.js
 ```
 
 ```sh
-node build.mjs     # zips manifest.json + dist/bundle.js → mychart.mybiadapter (unsigned)
+node build.mjs     # zips manifest.json + dist/bundle.js → mychart.mbia (unsigned)
 ```
 
 ## 4. Sign + publish

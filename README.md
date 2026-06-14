@@ -8,7 +8,7 @@ Build signed extensions for MyBI. One repo, two SDKs:
 - **[`plugins/`](./plugins)** — `@mybi/plugin-sdk`: build a **plugin** (surfaces, rails,
   settings) that runs in a sandboxed iframe and talks to MyBI through the `host` bridge.
 
-Both ship as **signed packages** (`.mybiadapter` / `.mybiplugin`) and are verified (Ed25519)
+Both ship as **signed packages** (`.mbia` / `.mbip`) and are verified (Ed25519)
 before they run. You sign with your **own** key (it never leaves your machine); MyBI
 countersigns it for the **verified** tier. See each folder's `RECIPE.md` + `SIGNING.md`.
 
